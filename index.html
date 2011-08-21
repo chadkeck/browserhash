@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset=utf-8 />
+
+		<title>Ingestion Engine</title>
+
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/reset.css" /> 
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/text.css" /> 
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/960.css" /> 
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/ingestion_engine.css" />
+
+		<script type="text/javascript" src="javascripts/lib/jquery-1.6.2.js"></script>
+        <script type="text/javascript" src="javascripts/lib/jquery.tmpl.js"</script>
+
+		<!--[if IE]-->
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<!--[endif]-->
+
+		<script type="text/javascript" src="javascripts/lib/spin.js"></script>
+		<script type="text/javascript" src="javascripts/lib/modernizr-2.0.min.js"></script>
+		<script type="text/javascript" src="javascripts/lib/md5.js"></script>
+		<script type="text/javascript" src="javascripts/lib/sha1.js"></script>
+		<script type="text/javascript" src="javascripts/lib/sha256.js"></script>
+		<script type="text/javascript" src="javascripts/lib/sha512.js"></script>
+
+		<script type="text/javascript" src="javascripts/digester.js"></script>
+		<script type="javascript/worker" src="javascripts/digester_worker.js"></script>
+		<script type="text/javascript" src="javascripts/ingestion_engine.js"></script>
+
+	</head>
+
+	<body>
+
+        <script id="entry-tmpl" type="text/x-jquery-tmpl">
+            <div class="grid_12">
+                <ul class="info-list">
+                    <li class="filename">${filename}</li>
+                    <li class="md5">
+                        <div class="digest-label">MD5</div>
+                        <div class="digest">${md5}</div>
+                    </li>
+                    <li class="sha1">
+                        <div class="digest-label">SHA-1</div>
+                        <div class="digest">${sha1}</div>
+                    </li>
+                    <li class="sha256">
+                        <div class="digest-label">SHA-256</div>
+                        <div class="digest">${sha256}</div>
+                    </li>
+                    <li class="sha512">
+                        <div class="digest-label">SHA-512</div>
+                        <div class="digest">${sha512}</div>
+                    </li>
+                </ul>
+            </div>
+        </script>
+
+		<div id="page">
+
+			<div id="drop-area-container" class="container_12"> 
+				<div class="grid_12"> 
+					<h2>Ingestion Engine</h2>
+				</div> <!-- end .grid_12 --> 
+
+				<div id="drop-zone" class="grid_12"> 
+				</div> <!-- end .grid_12 --> 
+				<div class="clear"></div> 
+			</div> <!-- end .container_12 --> 
+
+            <div id="results-container" class="container_12">
+            </div>
+
+		</div> <!-- end page -->
+
+	</body> 
+</html>

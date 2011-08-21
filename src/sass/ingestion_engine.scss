@@ -1,0 +1,32 @@
+#page {
+    height: 100%;
+    width: 100%;
+}
+
+#drop-zone {
+	border: 1px solid black;
+	height: 200px;
+	background-color: orange;
+}
+
+ul.info-list {
+    list-style: none;
+}
+
+ul.info-list li {
+    margin-left: 0;
+} 
+
+ul.info-list .filename {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+ul.info-list div.digest-label {
+    min-width: 50px;
+    padding-right: 20px;
+}
+
+ul.info-list div.digest {
+    float: left;
+}
