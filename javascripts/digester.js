@@ -48,7 +48,7 @@
       file_reader.onload = __bind(function(event) {
         var file_info, worker;
         this.file_contents = event.target.result;
-        worker = new Worker('javascripts/worker.js');
+        worker = new Worker('javascripts/digester_worker.js');
         worker.onmessage = __bind(function(event) {
           return this.handle_digest_message(event.data);
         }, this);

@@ -1,7 +1,6 @@
 @importScripts "lib/md5.js"
 @importScripts "lib/sha1.js"
 @importScripts "lib/sha256.js"
-@importScripts "lib/sha512.js"
 
 send_digest = (digest_type, file_info) ->
     file_contents = file_info.file_contents
@@ -16,7 +15,7 @@ send_digest = (digest_type, file_info) ->
 
 
 calculate_digests = (file_info) ->
-    digest_types = ['md5', 'sha1', 'sha256', 'sha512']
+    digest_types = ['md5', 'sha1', 'sha256']
     send_digest( digest_type, file_info ) for digest_type in digest_types
 
 @onmessage = (event) ->

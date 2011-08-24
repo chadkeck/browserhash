@@ -3,7 +3,6 @@
   this.importScripts("lib/md5.js");
   this.importScripts("lib/sha1.js");
   this.importScripts("lib/sha256.js");
-  this.importScripts("lib/sha512.js");
   send_digest = function(digest_type, file_info) {
     var digest, digest_info, file_contents, file_name, lib_fn;
     file_contents = file_info.file_contents;
@@ -19,7 +18,7 @@
   };
   calculate_digests = function(file_info) {
     var digest_type, digest_types, _i, _len, _results;
-    digest_types = ['md5', 'sha1', 'sha256', 'sha512'];
+    digest_types = ['md5', 'sha1', 'sha256'];
     _results = [];
     for (_i = 0, _len = digest_types.length; _i < _len; _i++) {
       digest_type = digest_types[_i];

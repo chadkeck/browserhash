@@ -4,29 +4,59 @@
 }
 
 #drop-zone {
-	border: 1px solid black;
-	height: 200px;
-	background-color: orange;
+	border: 3px dashed gray;
+	height: 300px;
+    border-radius: 6px;
+}
+
+#drop-zone #drop-zone-text {
+    font-size: 36px;
+    text-align: center;
+    padding: 3.3em 0 0 0;
+    color: gray;
+}
+
+div.entries {
+    padding-bottom: 10px;
 }
 
 ul.info-list {
     list-style: none;
+
+    li {
+        margin-left: 0;
+    }
+
+    .filename {
+        font-size: 1.5em;
+        font-weight: bold;
+        background-color: lightBlue;
+        color: black;
+        padding-left: 0.5em;
+    }
+
+    div.digest-label {
+        font-weight: bold;
+        width: 54px;
+        float: left;
+        text-align: right;
+        padding-right: 8px;
+    }
+
+    div.digest {
+        font-family: "Courier New", monospace;
+    }
 }
 
-ul.info-list li {
-    margin-left: 0;
-} 
-
-ul.info-list .filename {
-    font-size: 1.2em;
-    font-weight: bold;
+#footer {
+    position: absolute;
+    bottom: 20px;
+    left: 0px;
 }
 
-ul.info-list div.digest-label {
-    min-width: 50px;
-    padding-right: 20px;
+#footer-list {
+    margin: 0 auto 0 auto;
 }
-
-ul.info-list div.digest {
-    float: left;
+#footer-list li {
+    display: inline;
 }

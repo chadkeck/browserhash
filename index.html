@@ -4,7 +4,7 @@
 	<head>
 		<meta charset=utf-8 />
 
-		<title>Ingestion Engine</title>
+		<title>Browser Hash</title>
 
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/reset.css" /> 
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/text.css" /> 
@@ -34,24 +34,20 @@
 	<body>
 
         <script id="entry-tmpl" type="text/x-jquery-tmpl">
-            <div class="grid_12">
+            <div class="grid_12 entries">
                 <ul class="info-list">
                     <li class="filename">${filename}</li>
                     <li class="md5">
                         <div class="digest-label">MD5</div>
-                        <div class="digest">${md5}</div>
+                        <div class="digest">?</div>
                     </li>
                     <li class="sha1">
                         <div class="digest-label">SHA-1</div>
-                        <div class="digest">${sha1}</div>
+                        <div class="digest">?</div>
                     </li>
                     <li class="sha256">
                         <div class="digest-label">SHA-256</div>
-                        <div class="digest">${sha256}</div>
-                    </li>
-                    <li class="sha512">
-                        <div class="digest-label">SHA-512</div>
-                        <div class="digest">${sha512}</div>
+                        <div class="digest">?</div>
                     </li>
                 </ul>
             </div>
@@ -61,15 +57,34 @@
 
 			<div id="drop-area-container" class="container_12"> 
 				<div class="grid_12"> 
-					<h2>Ingestion Engine</h2>
+					<h2>The easiest and most secure way to get file hashes on the web!</h2>
 				</div> <!-- end .grid_12 --> 
 
 				<div id="drop-zone" class="grid_12"> 
+                    <div id="drop-zone-text">
+                        Drop Files Here To Get Their Hashes
+                    </div>
 				</div> <!-- end .grid_12 --> 
 				<div class="clear"></div> 
 			</div> <!-- end .container_12 --> 
 
             <div id="results-container" class="container_12">
+            </div>
+
+            <div id="footer" class="container_12">
+                <div class="grid_12">
+                    <ul id="footer-list">
+                        <li>
+                            <a href="#"> Contact </a>
+                        </li>
+                        <li>
+                            <a href="#"> Source Code </a>
+                        </li>
+                        <li>
+                            <a href="#"> About </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
 		</div> <!-- end page -->

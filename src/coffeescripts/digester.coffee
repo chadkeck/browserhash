@@ -46,7 +46,7 @@ class window.Digester
         file_reader.onload = (event) =>
             @file_contents = event.target.result
 
-            worker = new Worker 'javascripts/worker.js'
+            worker = new Worker 'javascripts/digester_worker.js'
             worker.onmessage = (event) =>
                 #console.log( 'returned from worker:', event )
                 @handle_digest_message( event.data )
