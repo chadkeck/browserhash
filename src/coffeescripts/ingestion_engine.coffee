@@ -15,7 +15,6 @@ $ ->
     else
         console.log 'NO for filereader'
 
-
     # prevent the browser from opening dropped items
     page = document.getElementById 'page'
     page.ondragover = ->

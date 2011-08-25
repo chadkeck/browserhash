@@ -85,7 +85,8 @@
       new Digester(file, this.callbacks);
     }
     TableRow.prototype.set_field = function(digest_type, digest) {
-      return this.row.children('.' + digest_type).children('.digest').html(digest);
+      this.row.children('.' + digest_type).children('.digest').html(digest);
+      return this.row.children('.' + digest_type).children('.spinner').css('visibility', 'hidden');
     };
     TableRow.prototype.handle_md5 = function(digest) {
       return this.set_field('md5', digest);

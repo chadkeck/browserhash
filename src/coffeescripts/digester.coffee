@@ -79,6 +79,7 @@ class window.TableRow
 
     set_field: (digest_type, digest) =>
         @row.children( '.' + digest_type ).children( '.digest' ).html( digest )
+        @row.children( '.' + digest_type ).children( '.spinner' ).css( 'visibility', 'hidden' )
 
     handle_md5:    (digest) => @set_field( 'md5', digest )
     handle_sha1:   (digest) => @set_field( 'sha1', digest )

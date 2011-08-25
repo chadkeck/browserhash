@@ -1,4 +1,16 @@
+@import "shared.scss";
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #F3F5F8;
+}
+
 #page {
+    position: relative;
     height: 100%;
     width: 100%;
 }
@@ -7,6 +19,8 @@
 	border: 3px dashed gray;
 	height: 300px;
     border-radius: 6px;
+
+    margin-bottom: 20px;
 }
 
 #drop-zone #drop-zone-text {
@@ -20,19 +34,35 @@ div.entries {
     padding-bottom: 10px;
 }
 
+$my_gray: #F3F3F3;
+
 ul.info-list {
     list-style: none;
+    @include box-shadow( #948e93 );
 
     li {
         margin-left: 0;
+        border: 1px solid $my_gray;
+    }
+
+    li:nth-child(odd) {
+        background-color: $my_gray;
+    }
+
+    li:last-child {
+        border-bottom-radius: 3px;
     }
 
     .filename {
         font-size: 1.5em;
+		text-shadow: 1px 1px #7D8490, 2px 2px #546276;
         font-weight: bold;
-        background-color: lightBlue;
-        color: black;
+        color: white;
         padding-left: 0.5em;
+        border: 1px solid #97A4B7;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        @include vertical-glass-gradient( #a4b1c3, #889ab3, #7f94b0, #7188a8 );
     }
 
     div.digest-label {
@@ -45,6 +75,16 @@ ul.info-list {
 
     div.digest {
         font-family: "Courier New", monospace;
+        float: left;
+    }
+
+    div.spinner {
+        position: relative;
+        left: 64px;
+        background-image: url( ../resources/spinner.gif );
+        background-repeat: no-repeat;
+        min-width: 20px;
+        min-height: 20px;
     }
 }
 

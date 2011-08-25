@@ -47,7 +47,7 @@
 
 	</head>
 
-	<body>
+	<body id="page">
 
         <script id="entry-tmpl" type="text/x-jquery-tmpl">
             <div class="grid_12 entries">
@@ -55,55 +55,58 @@
                     <li class="filename">${filename}</li>
                     <li class="md5">
                         <div class="digest-label">MD5</div>
-                        <div class="digest">?</div>
+                        <div class="digest"></div>
+                        <div class="spinner" id="md5-spinner">&nbsp;</div>
                     </li>
                     <li class="sha1">
                         <div class="digest-label">SHA-1</div>
-                        <div class="digest">?</div>
+                        <div class="digest"></div>
+                        <div class="spinner" id="sha1-spinner">&nbsp;</div>
                     </li>
                     <li class="sha256">
                         <div class="digest-label">SHA-256</div>
-                        <div class="digest">?</div>
+                        <div class="digest"></div>
+                        <div class="spinner" id="sha256-spinner">&nbsp;</div>
                     </li>
                 </ul>
             </div>
         </script>
 
-		<div id="page">
 
-			<div id="drop-area-container" class="container_12"> 
-				<div class="grid_12"> 
-					<h2>The easiest and most secure way to get file hashes on the web!</h2>
-				</div> <!-- end .grid_12 --> 
+        <div id="drop-area-container" class="container_12"> 
+            <div class="grid_12"> 
+                <h2>The easiest and most secure way to get file hashes on the web!</h2>
+            </div> <!-- end .grid_12 --> 
 
-				<div id="drop-zone" class="grid_12"> 
-                    <div id="drop-zone-text">
-                        Drop Files Here To Get Their Hashes
-                    </div>
-				</div> <!-- end .grid_12 --> 
-				<div class="clear"></div> 
-			</div> <!-- end .container_12 --> 
-
-            <div id="results-container" class="container_12">
-            </div>
-
-            <div id="footer" class="container_12">
-                <div class="grid_12">
-                    <ul id="footer-list">
-                        <li>
-                            <a href="#"> Contact </a>
-                        </li>
-                        <li>
-                            <a href="#"> Source Code </a>
-                        </li>
-                        <li>
-                            <a href="#"> About </a>
-                        </li>
-                    </ul>
+            <div id="drop-zone" class="grid_12"> 
+                <div id="drop-zone-text">
+                    Drop Files Here To Get Their Hashes
                 </div>
-            </div>
+            </div> <!-- end .grid_12 --> 
+            <div class="clear"></div> 
+        </div> <!-- end .container_12 --> 
 
-		</div> <!-- end page -->
+        <div id="results-container" class="container_12">
+        </div>
+
+        <!--
+        <div id="footer" class="container_12">
+            <div class="grid_12">
+                <ul id="footer-list">
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Source Code</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+
 
 	</body> 
 </html>
