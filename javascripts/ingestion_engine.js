@@ -17,9 +17,12 @@
     } else {
       console.log('NO for filereader');
     }
+    window.onscroll = function() {
+      $('#footer').css('position', 'relative');
+      return $('#footer').css('bottom', '1px');
+    };
     page = document.getElementById('page');
     page.ondragover = function() {
-      console.log('ondragover');
       return false;
     };
     page.ondragend = function() {

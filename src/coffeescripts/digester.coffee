@@ -1,29 +1,51 @@
 class window.DropZone
     constructor: (element_id, new_file_callback) ->
         @element = document.getElementById element_id
+        $( @element ).addClass 'zoomable'
 
         @element.ondragover =  @handle_drag_over
         @element.ondragenter = @handle_drag_enter
+        @element.ondragleave = @handle_drag_leave
         @element.ondrop = 	   @handle_drop
+
+        children = $( @element ).find( '*' ).toArray()
+        console.log( children )
 
         @new_file_callback = new_file_callback
 
-    handle_mouse_enter: (event) ->
-        #console.log( event.target )
+    show_drag_state: (show) =>
+        element = $ @element
+        if show
+            element.addClass 'drag-on'
+            element.find( '*' ).addClass 'drag-on'
+        else
+            element.removeClass 'drag-on'
+            element.find( '*' ).removeClass 'drag-on'
         false
 
-    handle_drag_over: (event) ->
+    handle_drag_over: (event) =>
         #console.log( 'DropZone::ondragover' )
+        @show_drag_state true
+        event.preventDefault()
         false
 
-    handle_drag_enter: (event) ->
-        #console.log( 'DropZone::ondragenter' )
+    handle_drag_enter: (event) =>
+        console.log( 'DropZone::ondragenter' )
+        @show_drag_state true
+        event.preventDefault()
+        false
+
+    handle_drag_leave: (event) =>
+        console.log( 'DropZone::ondragleave' )
+        @show_drag_state false
         event.preventDefault()
         false
 
     handle_drop: (event) =>
         event.stopPropagation()
         event.preventDefault()
+        @show_drag_state false
+
         files = event.dataTransfer.files
 
         if files.length is 0

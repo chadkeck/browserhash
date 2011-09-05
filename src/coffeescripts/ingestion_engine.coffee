@@ -15,10 +15,13 @@ $ ->
     else
         console.log 'NO for filereader'
 
+    window.onscroll = ->
+        $( '#footer' ).css( 'position', 'relative' )
+        $( '#footer' ).css( 'bottom', '1px' )
+
     # prevent the browser from opening dropped items
     page = document.getElementById 'page'
     page.ondragover = ->
-        console.log 'ondragover'
         false
 
     page.ondragend = ->

@@ -9,6 +9,10 @@ body {
     background-color: #F3F5F8;
 }
 
+.zoomable {
+    @include all-transition( 100 );
+}
+
 #page {
     position: relative;
     height: 100%;
@@ -16,18 +20,34 @@ body {
 }
 
 #drop-zone {
-	border: 3px dashed gray;
-	height: 300px;
+    border: 3px dashed gray;
+    height: 300px;
     border-radius: 6px;
 
     margin-bottom: 20px;
+
+    #drop-zone-text {
+        font-size: 36px;
+        text-align: center;
+        padding: 3.3em 0 0 0;
+        color: gray;
+        z-index: -100;
+        @include not-selectable();
+        cursor: default;
+    }
+
+    #drop-zone-text.drag-on {
+        color: white;
+    }
 }
 
-#drop-zone #drop-zone-text {
-    font-size: 36px;
+#drop-zone.drag-on {
+    @include vertical-glass-gradient( #a4b1c3, #889ab3, #7f94b0, #7188a8 );
+    border: 3px solid gray;
+}
+
+#title {
     text-align: center;
-    padding: 3.3em 0 0 0;
-    color: gray;
 }
 
 div.entries {
@@ -90,8 +110,11 @@ ul.info-list {
 
 #footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     left: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
 }
 
 #footer-list {

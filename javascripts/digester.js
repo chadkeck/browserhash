@@ -2,19 +2,47 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   window.DropZone = (function() {
     function DropZone(element_id, new_file_callback) {
-      this.handle_drop = __bind(this.handle_drop, this);      this.element = document.getElementById(element_id);
+      this.handle_drop = __bind(this.handle_drop, this);
+      this.handle_drag_leave = __bind(this.handle_drag_leave, this);
+      this.handle_drag_enter = __bind(this.handle_drag_enter, this);
+      this.handle_drag_over = __bind(this.handle_drag_over, this);
+      this.show_drag_state = __bind(this.show_drag_state, this);      var children;
+      this.element = document.getElementById(element_id);
+      $(this.element).addClass('zoomable');
       this.element.ondragover = this.handle_drag_over;
       this.element.ondragenter = this.handle_drag_enter;
+      this.element.ondragleave = this.handle_drag_leave;
       this.element.ondrop = this.handle_drop;
+      children = $(this.element).find('*').toArray();
+      console.log(children);
       this.new_file_callback = new_file_callback;
     }
-    DropZone.prototype.handle_mouse_enter = function(event) {
+    DropZone.prototype.show_drag_state = function(show) {
+      var element;
+      element = $(this.element);
+      if (show) {
+        element.addClass('drag-on');
+        element.find('*').addClass('drag-on');
+      } else {
+        element.removeClass('drag-on');
+        element.find('*').removeClass('drag-on');
+      }
       return false;
     };
     DropZone.prototype.handle_drag_over = function(event) {
+      this.show_drag_state(true);
+      event.preventDefault();
       return false;
     };
     DropZone.prototype.handle_drag_enter = function(event) {
+      console.log('DropZone::ondragenter');
+      this.show_drag_state(true);
+      event.preventDefault();
+      return false;
+    };
+    DropZone.prototype.handle_drag_leave = function(event) {
+      console.log('DropZone::ondragleave');
+      this.show_drag_state(false);
       event.preventDefault();
       return false;
     };
@@ -22,6 +50,7 @@
       var file, files, _i, _len, _results;
       event.stopPropagation();
       event.preventDefault();
+      this.show_drag_state(false);
       files = event.dataTransfer.files;
       if (files.length === 0) {
         return;

@@ -5,6 +5,12 @@ html {
 body {
   background-color: #F3F5F8; }
 
+.zoomable {
+  -webkit-transition: all 100 linear;
+  -moz-transition: all 100 linear;
+  -o-transition: all 100 linear;
+  transition: all 100 linear; }
+
 #page {
   position: relative;
   height: 100%;
@@ -15,12 +21,29 @@ body {
   height: 300px;
   border-radius: 6px;
   margin-bottom: 20px; }
+  #drop-zone #drop-zone-text {
+    font-size: 36px;
+    text-align: center;
+    padding: 3.3em 0 0 0;
+    color: gray;
+    z-index: -100;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default; }
+  #drop-zone #drop-zone-text.drag-on {
+    color: white; }
 
-#drop-zone #drop-zone-text {
-  font-size: 36px;
-  text-align: center;
-  padding: 3.3em 0 0 0;
-  color: gray; }
+#drop-zone.drag-on {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #a4b1c3), color-stop(50%, #889ab3), color-stop(50.1%, #7f94b0), color-stop(100%, #7188a8));
+  background-image: -moz-linear-gradient(top, #a4b1c3 0%, #889ab3 50%, #7f94b0 50.1%, #7188a8 100%);
+  background-image: linear-gradient(top, #a4b1c3 0%, #889ab3 50%, #7f94b0 50.1%, #7188a8 100%);
+  border: 3px solid gray; }
+
+#title {
+  text-align: center; }
 
 div.entries {
   padding-bottom: 10px; }
@@ -69,8 +92,11 @@ ul.info-list {
 
 #footer {
   position: absolute;
-  bottom: 20px;
-  left: 0px; }
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  background-color: white; }
 
 #footer-list {
   margin: 0 auto 0 auto; }

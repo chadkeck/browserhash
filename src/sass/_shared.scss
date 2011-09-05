@@ -20,3 +20,25 @@ $box-shadow-blur: 0.5em;
     -o-box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
     box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
 }
+
+@mixin all-transition( $time ) {
+    -webkit-transition: all $time linear;
+    -moz-transition: all $time linear;
+    -o-transition: all $time linear;
+    transition: all $time linear;
+}
+
+@mixin zoom( $factor ) {
+    -webkit-transform: scale( $factor );
+    -moz-transform: scale( $factor );
+    -o-transform: scale( $factor );
+    transform: scale( $factor );
+}
+
+@mixin not-selectable() {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
