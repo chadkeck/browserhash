@@ -4,7 +4,7 @@
 	<head>
 		<meta charset=utf-8 />
 
-		<title>Browser #AS#</title>
+		<title>Browser Hash</title>
 
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/reset.css" /> 
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/960/text.css" /> 
@@ -44,6 +44,8 @@
 
         </script>
 
+        <noscript>
+        </noscript>
 
 	</head>
 
@@ -75,34 +77,52 @@
 
         <div id="drop-area-container" class="container_12"> 
             <div class="grid_12"> 
-                <h1 id="title">Browser #AS#</h1>
-            </div> <!-- end .grid_12 --> 
+                <h1 id="title">Browser <span class="accent">#</span>ash</h1>
+            </div>
+
+            <div id="alert-area" class="grid_12">Hey, I'm an alert!</div>
 
             <div id="drop-zone" class="grid_12"> 
                 <div id="drop-zone-text">
                     Drop Files Here To Get Their Hashes
                 </div>
-            </div> <!-- end .grid_12 --> 
+                <div id="drop-zone-text-details">
+                    MD5, SHA-1, and SHA-256 supported.
+                </div>
+            </div>
             <div class="clear"></div> 
+
+            <div id="results-container" class="container_12">
+            </div>
+
         </div> <!-- end .container_12 --> 
 
-        <div id="results-container" class="container_12">
-        </div>
-
+        <div id="footer-shadow"></div>
         <div id="footer">
             <ul id="footer-list">
                 <li>
-                <a href="#">Contact</a>
+                <a href="mailto:chadkeck@gmail.com">Contact</a>
                 </li>
                 <li>
-                <a href="#">Source Code</a>
+                <a href="https://github.com/chadkeck/browserhash">Source Code</a>
                 </li>
                 <li>
-                <a href="#">About</a>
+                <a href="http://dregsoft.com/blog/?p=61">About</a>
                 </li>
             </ul>
         </div>
 
+        <script id="file-errors-tmpl" type="text/x-jquery-tmpl">
+            {{each files}}
+            {{/each}}
+        </script>
+
+        <script id="browsers-tmpl" type="text/x-jquery-tmpl">
+            <div class="grid_12">
+                Sorry! Your browser isn't supported.
+                Please use the latest <a href="http://getfirefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Chrome</a>.
+            </div>
+        </script>
 
 	</body> 
 </html>

@@ -1,5 +1,8 @@
 @import "shared.scss";
 
+$my_gray: #F3F3F3;
+$my_blue: #7188a8;
+
 html {
     height: 100%;
     width: 100%;
@@ -11,6 +14,10 @@ body {
 
 .zoomable {
     @include all-transition( 100 );
+}
+
+.accent {
+    font-size: 1.5em;
 }
 
 #page {
@@ -27,38 +34,62 @@ body {
     margin-bottom: 20px;
 
     #drop-zone-text {
-        font-size: 36px;
-        text-align: center;
-        padding: 3.3em 0 0 0;
-        color: gray;
-        z-index: -100;
         @include not-selectable();
+
+        font: 42px 'HVDComicSerifProRegular', Arial, sans-serif;
+        text-align: center;
+        padding: 3.0em 0 0 0;
+        z-index: -100;
         cursor: default;
     }
 
     #drop-zone-text.drag-on {
         color: white;
     }
+
+    #drop-zone-text-details {
+        @include not-selectable();
+        cursor: default;
+        font: 18px 'HVDComicSerifProRegular', Arial, sans-serif;
+        text-align: center;
+        color: gray;
+        margin: 0 auto;
+        z-index: -101;
+    }
 }
 
 #drop-zone.drag-on {
     @include vertical-glass-gradient( #a4b1c3, #889ab3, #7f94b0, #7188a8 );
+
     border: 3px solid gray;
 }
 
+@font-face {
+    font-family: 'HVDComicSerifProRegular';
+    src: url('../resources/fonts/HVD_Comic_Serif_Pro-webfont.eot');
+    src: url('../resources/fonts/HVD_Comic_Serif_Pro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../resources/fonts/HVD_Comic_Serif_Pro-webfont.woff') format('woff'),
+         url('../resources/fonts/HVD_Comic_Serif_Pro-webfont.ttf') format('truetype'),
+         url('../resources/fonts/HVD_Comic_Serif_Pro-webfont.svg#HVDComicSerifProRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #title {
+    font: 36px 'HVDComicSerifProRegular', Arial, sans-serif;
     text-align: center;
+    color: $my_blue;
+    margin-bottom: 0px;
 }
 
 div.entries {
     padding-bottom: 10px;
 }
 
-$my_gray: #F3F3F3;
-
 ul.info-list {
-    list-style: none;
     @include box-shadow( #948e93 );
+
+    list-style: none;
 
     li {
         margin-left: 0;
@@ -74,9 +105,8 @@ ul.info-list {
     }
 
     .filename {
-        font-size: 1.5em;
+        font: 1.5em 'HVDComicSerifProRegular', Arial, sans-serif;
 		text-shadow: 1px 1px #7D8490, 2px 2px #546276;
-        font-weight: bold;
         color: white;
         padding-left: 0.5em;
         border: 1px solid #97A4B7;
@@ -86,11 +116,12 @@ ul.info-list {
     }
 
     div.digest-label {
-        font-weight: bold;
-        width: 54px;
+        width: 64px;
         float: left;
         text-align: right;
         padding-right: 8px;
+        padding-top: 2px;
+        font: 1em 'HVDComicSerifProRegular', Arial, sans-serif;
     }
 
     div.digest {
@@ -108,13 +139,43 @@ ul.info-list {
     }
 }
 
+#alert-area {
+    font: 16px 'HVDComicSerifProRegular', Arial, sans-serif;
+    padding: 4px;
+
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#footer-shadow {
+    background-image: url( /resources/shadow.png );
+    background-position: top left;
+    background-repeat: repeat-x;
+
+    position: fixed;
+    bottom: 28px;
+    left: 0px;
+    width: 100%;
+    height: 8px;
+}
+
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 0px;
     width: 100%;
     text-align: center;
+    padding: 6px;
     background-color: white;
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
 }
 
 #footer-list {

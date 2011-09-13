@@ -1,14 +1,44 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  window.AlertArea = (function() {
+    function AlertArea(element_id) {
+      this.clear = __bind(this.clear, this);
+      this.show_filesize_message = __bind(this.show_filesize_message, this);
+      this.show_message = __bind(this.show_message, this);      this.element = $(element_id);
+      this.timer = -1;
+    }
+    AlertArea.prototype.show_message = function(message) {
+      this.element.html(message);
+      return this.element.fadeIn();
+    };
+    AlertArea.prototype.show_filesize_message = function(files) {
+      var file, _i, _len, _results;
+      this.element.empty();
+      _results = [];
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        _results.push(this.element.html(file));
+      }
+      return _results;
+    };
+    AlertArea.prototype.clear = function() {
+      this.element.hide();
+      return this.element.fadeOut();
+    };
+    return AlertArea;
+  })();
   window.DropZone = (function() {
-    function DropZone(element_id, new_file_callback) {
+    function DropZone(element_id, new_file_callback, alert_callback, alert_filesize_callback) {
       this.handle_drop = __bind(this.handle_drop, this);
       this.handle_drag_leave = __bind(this.handle_drag_leave, this);
       this.handle_drag_enter = __bind(this.handle_drag_enter, this);
       this.handle_drag_over = __bind(this.handle_drag_over, this);
-      this.show_drag_state = __bind(this.show_drag_state, this);      var children;
+      this.show_drag_state = __bind(this.show_drag_state, this);      var children, one_megabyte;
       this.element = document.getElementById(element_id);
-      $(this.element).addClass('zoomable');
+      this.alert = alert_callback;
+      this.alert_filesize = alert_filesize_callback;
+      one_megabyte = 1024 * 1024;
+      this.file_size_limit = one_megabyte * 10;
       this.element.ondragover = this.handle_drag_over;
       this.element.ondragenter = this.handle_drag_enter;
       this.element.ondragleave = this.handle_drag_leave;
@@ -53,13 +83,19 @@
       this.show_drag_state(false);
       files = event.dataTransfer.files;
       if (files.length === 0) {
+        this.alert('Can only drop files!');
         return;
       }
       _results = [];
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
         if (file.size === 0) {
-          return;
+          this.alert('That file was empty.');
+          continue;
+        }
+        if (file.size > this.file_size_limit) {
+          this.alert_filesize(file.name);
+          continue;
         }
         _results.push(this.new_file_callback(file));
       }

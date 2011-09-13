@@ -11,6 +11,9 @@ body {
   -o-transition: all 100 linear;
   transition: all 100 linear; }
 
+.accent {
+  font-size: 1.5em; }
+
 #page {
   position: relative;
   height: 100%;
@@ -22,19 +25,30 @@ body {
   border-radius: 6px;
   margin-bottom: 20px; }
   #drop-zone #drop-zone-text {
-    font-size: 36px;
-    text-align: center;
-    padding: 3.3em 0 0 0;
-    color: gray;
-    z-index: -100;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    font: 42px 'HVDComicSerifProRegular', Arial, sans-serif;
+    text-align: center;
+    padding: 3.0em 0 0 0;
+    z-index: -100;
     cursor: default; }
   #drop-zone #drop-zone-text.drag-on {
     color: white; }
+  #drop-zone #drop-zone-text-details {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+    font: 18px 'HVDComicSerifProRegular', Arial, sans-serif;
+    text-align: center;
+    color: gray;
+    margin: 0 auto;
+    z-index: -101; }
 
 #drop-zone.drag-on {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #a4b1c3), color-stop(50%, #889ab3), color-stop(50.1%, #7f94b0), color-stop(100%, #7188a8));
@@ -42,18 +56,28 @@ body {
   background-image: linear-gradient(top, #a4b1c3 0%, #889ab3 50%, #7f94b0 50.1%, #7188a8 100%);
   border: 3px solid gray; }
 
+@font-face {
+  font-family: 'HVDComicSerifProRegular';
+  src: url("../resources/fonts/HVD_Comic_Serif_Pro-webfont.eot");
+  src: url("../resources/fonts/HVD_Comic_Serif_Pro-webfont.eot?#iefix") format("embedded-opentype"), url("../resources/fonts/HVD_Comic_Serif_Pro-webfont.woff") format("woff"), url("../resources/fonts/HVD_Comic_Serif_Pro-webfont.ttf") format("truetype"), url("../resources/fonts/HVD_Comic_Serif_Pro-webfont.svg#HVDComicSerifProRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 #title {
-  text-align: center; }
+  font: 36px 'HVDComicSerifProRegular', Arial, sans-serif;
+  text-align: center;
+  color: #7188a8;
+  margin-bottom: 0px; }
 
 div.entries {
   padding-bottom: 10px; }
 
 ul.info-list {
-  list-style: none;
   -webkit-box-shadow: 0 4px 0.5em #948e93;
   -moz-box-shadow: 0 4px 0.5em #948e93;
   -o-box-shadow: 0 4px 0.5em #948e93;
-  box-shadow: 0 4px 0.5em #948e93; }
+  box-shadow: 0 4px 0.5em #948e93;
+  list-style: none; }
   ul.info-list li {
     margin-left: 0;
     border: 1px solid #f3f3f3; }
@@ -62,9 +86,8 @@ ul.info-list {
   ul.info-list li:last-child {
     border-bottom-radius: 3px; }
   ul.info-list .filename {
-    font-size: 1.5em;
+    font: 1.5em 'HVDComicSerifProRegular', Arial, sans-serif;
     text-shadow: 1px 1px #7D8490, 2px 2px #546276;
-    font-weight: bold;
     color: white;
     padding-left: 0.5em;
     border: 1px solid #97A4B7;
@@ -74,11 +97,12 @@ ul.info-list {
     background-image: -moz-linear-gradient(top, #a4b1c3 0%, #889ab3 50%, #7f94b0 50.1%, #7188a8 100%);
     background-image: linear-gradient(top, #a4b1c3 0%, #889ab3 50%, #7f94b0 50.1%, #7188a8 100%); }
   ul.info-list div.digest-label {
-    font-weight: bold;
-    width: 54px;
+    width: 64px;
     float: left;
     text-align: right;
-    padding-right: 8px; }
+    padding-right: 8px;
+    padding-top: 2px;
+    font: 1em 'HVDComicSerifProRegular', Arial, sans-serif; }
   ul.info-list div.digest {
     font-family: "Courier New", monospace;
     float: left; }
@@ -90,13 +114,35 @@ ul.info-list {
     min-width: 20px;
     min-height: 20px; }
 
+#alert-area {
+  font: 16px 'HVDComicSerifProRegular', Arial, sans-serif;
+  padding: 4px;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+#footer-shadow {
+  background-image: url(/resources/shadow.png);
+  background-position: top left;
+  background-repeat: repeat-x;
+  position: fixed;
+  bottom: 28px;
+  left: 0px;
+  width: 100%;
+  height: 8px; }
+
 #footer {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   width: 100%;
   text-align: center;
+  padding: 6px;
   background-color: white; }
+  #footer a {
+    text-decoration: none; }
+  #footer a:hover {
+    text-decoration: underline; }
 
 #footer-list {
   margin: 0 auto 0 auto; }

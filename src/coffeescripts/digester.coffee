@@ -1,7 +1,31 @@
+class window.AlertArea
+    constructor: (element_id) ->
+        @element = $( element_id )
+        @timer = -1
+
+    show_message: (message) =>
+        @element.html message
+        @element.fadeIn()
+
+    show_filesize_message: (files) =>
+        @element.empty()
+        for file in files
+            @element.html file
+
+    clear: =>
+        @element.hide()
+        @element.fadeOut()
+
 class window.DropZone
-    constructor: (element_id, new_file_callback) ->
+    constructor: (element_id, new_file_callback, alert_callback, alert_filesize_callback) ->
         @element = document.getElementById element_id
-        $( @element ).addClass 'zoomable'
+        #$( @element ).addClass 'zoomable'
+
+        @alert = alert_callback
+        @alert_filesize = alert_filesize_callback
+
+        one_megabyte = 1024 * 1024
+        @file_size_limit = one_megabyte * 10
 
         @element.ondragover =  @handle_drag_over
         @element.ondragenter = @handle_drag_enter
@@ -49,13 +73,19 @@ class window.DropZone
         files = event.dataTransfer.files
 
         if files.length is 0
+            @alert 'Can only drop files!'
             # do something
             return
 
         for file in files
             if file.size is 0
                 # sorry, can only drop files
-                return
+                @alert 'That file was empty.'
+                continue
+            if file.size > @file_size_limit
+                @alert_filesize file.name
+                # file too large
+                continue
             @new_file_callback file
 
 class window.Digester
