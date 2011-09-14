@@ -11,6 +11,17 @@
     background-image: linear-gradient(top, $color1 0%, $color2 50%, $color3 50.1%, $color4 100%);
 }
 
+@mixin orange-gradient() {
+    background: #ffaf4b; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* W3C */
+}
+
 $box-shadow-x: 0;
 $box-shadow-y: 4px;
 $box-shadow-blur: 0.5em;

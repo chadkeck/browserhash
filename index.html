@@ -29,6 +29,8 @@
 		<script type="javascript/worker" src="javascripts/digester_worker.js"></script>
 		<script type="text/javascript" src="javascripts/ingestion_engine.js"></script>
 
+        <link rel="icon" type="image/png" href="favicon.png" />
+
         <!-- Google Analytics -->
         <script type="text/javascript">
 
@@ -43,9 +45,6 @@
              })();
 
         </script>
-
-        <noscript>
-        </noscript>
 
 	</head>
 
@@ -80,7 +79,7 @@
                 <h1 id="title">Browser <span class="accent">#</span>ash</h1>
             </div>
 
-            <div id="alert-area" class="grid_12">Hey, I'm an alert!</div>
+            <div id="alert-area" class="grid_12">You will need to enable JavaScript to use Browser Hash!</div>
 
             <div id="drop-zone" class="grid_12"> 
                 <div id="drop-zone-text">
@@ -112,14 +111,9 @@
             </ul>
         </div>
 
-        <script id="file-errors-tmpl" type="text/x-jquery-tmpl">
-            {{each files}}
-            {{/each}}
-        </script>
-
         <script id="browsers-tmpl" type="text/x-jquery-tmpl">
-            <div class="grid_12">
-                Sorry! Your browser isn't supported.
+            <div class="grid_12 unsupported-browser">
+                Sorry! Your browser isn't supported yet.<br />
                 Please use the latest <a href="http://getfirefox.com">Firefox</a> or <a href="http://www.google.com/chrome">Chrome</a>.
             </div>
         </script>

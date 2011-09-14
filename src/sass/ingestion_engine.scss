@@ -141,11 +141,13 @@ ul.info-list {
 
 #alert-area {
     font: 16px 'HVDComicSerifProRegular', Arial, sans-serif;
-    padding: 4px;
+    @include orange-gradient();
 
-    border: 1px solid black;
-    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-top: 0px;
     margin-bottom: 10px;
+    padding: 6px;
 }
 
 #footer-shadow {
@@ -183,4 +185,8 @@ ul.info-list {
 }
 #footer-list li {
     display: inline;
+}
+
+.unsupported-browser {
+    font-size: 1.5em;
 }

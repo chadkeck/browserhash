@@ -1,11 +1,10 @@
 class window.AlertArea
     constructor: (element_id) ->
         @element = $( element_id )
-        @timer = -1
 
     show_message: (message) =>
         @element.html message
-        @element.fadeIn()
+        @element.fadeTo( 0, 0 ).css( 'visibility', 'visible' ).fadeTo( 600, 1 )
 
     show_filesize_message: (files) =>
         @element.empty()
@@ -13,16 +12,15 @@ class window.AlertArea
             @element.html file
 
     clear: =>
-        @element.hide()
-        @element.fadeOut()
+        @element.fadeTo( 0, 1 ).css( 'visibility', 'visible' ).fadeTo( 600, 0 )
 
 class window.DropZone
-    constructor: (element_id, new_file_callback, alert_callback, alert_filesize_callback) ->
+    constructor: (element_id, new_file_callback, alert_callback, alert_clear_callback) ->
         @element = document.getElementById element_id
         #$( @element ).addClass 'zoomable'
 
         @alert = alert_callback
-        @alert_filesize = alert_filesize_callback
+        @alert_clear = alert_clear_callback
 
         one_megabyte = 1024 * 1024
         @file_size_limit = one_megabyte * 10
@@ -31,9 +29,6 @@ class window.DropZone
         @element.ondragenter = @handle_drag_enter
         @element.ondragleave = @handle_drag_leave
         @element.ondrop = 	   @handle_drop
-
-        children = $( @element ).find( '*' ).toArray()
-        console.log( children )
 
         @new_file_callback = new_file_callback
 
@@ -54,13 +49,13 @@ class window.DropZone
         false
 
     handle_drag_enter: (event) =>
-        console.log( 'DropZone::ondragenter' )
+        #console.log( 'DropZone::ondragenter' )
         @show_drag_state true
         event.preventDefault()
         false
 
     handle_drag_leave: (event) =>
-        console.log( 'DropZone::ondragleave' )
+        #console.log( 'DropZone::ondragleave' )
         @show_drag_state false
         event.preventDefault()
         false
@@ -73,20 +68,28 @@ class window.DropZone
         files = event.dataTransfer.files
 
         if files.length is 0
-            @alert 'Can only drop files!'
+            @alert 'Sorry! You can only drop files!'
             # do something
             return
 
+        errors = 0
         for file in files
             if file.size is 0
                 # sorry, can only drop files
-                @alert 'That file was empty.'
+                @alert 'You dropped an empty file.'
+                errors = errors + 1
                 continue
             if file.size > @file_size_limit
-                @alert_filesize file.name
                 # file too large
+                #@alert_filesize file.name
+                @alert 'You can only drop files smaller than 10 MB.'
+                errors = errors + 1
                 continue
             @new_file_callback file
+
+        if errors is 0
+            @alert_clear()
+
 
 class window.Digester
     constructor: (file, callbacks) ->

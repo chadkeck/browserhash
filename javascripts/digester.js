@@ -5,11 +5,10 @@
       this.clear = __bind(this.clear, this);
       this.show_filesize_message = __bind(this.show_filesize_message, this);
       this.show_message = __bind(this.show_message, this);      this.element = $(element_id);
-      this.timer = -1;
     }
     AlertArea.prototype.show_message = function(message) {
       this.element.html(message);
-      return this.element.fadeIn();
+      return this.element.fadeTo(0, 0).css('visibility', 'visible').fadeTo(600, 1);
     };
     AlertArea.prototype.show_filesize_message = function(files) {
       var file, _i, _len, _results;
@@ -22,29 +21,26 @@
       return _results;
     };
     AlertArea.prototype.clear = function() {
-      this.element.hide();
-      return this.element.fadeOut();
+      return this.element.fadeTo(0, 1).css('visibility', 'visible').fadeTo(600, 0);
     };
     return AlertArea;
   })();
   window.DropZone = (function() {
-    function DropZone(element_id, new_file_callback, alert_callback, alert_filesize_callback) {
+    function DropZone(element_id, new_file_callback, alert_callback, alert_clear_callback) {
       this.handle_drop = __bind(this.handle_drop, this);
       this.handle_drag_leave = __bind(this.handle_drag_leave, this);
       this.handle_drag_enter = __bind(this.handle_drag_enter, this);
       this.handle_drag_over = __bind(this.handle_drag_over, this);
-      this.show_drag_state = __bind(this.show_drag_state, this);      var children, one_megabyte;
+      this.show_drag_state = __bind(this.show_drag_state, this);      var one_megabyte;
       this.element = document.getElementById(element_id);
       this.alert = alert_callback;
-      this.alert_filesize = alert_filesize_callback;
+      this.alert_clear = alert_clear_callback;
       one_megabyte = 1024 * 1024;
       this.file_size_limit = one_megabyte * 10;
       this.element.ondragover = this.handle_drag_over;
       this.element.ondragenter = this.handle_drag_enter;
       this.element.ondragleave = this.handle_drag_leave;
       this.element.ondrop = this.handle_drop;
-      children = $(this.element).find('*').toArray();
-      console.log(children);
       this.new_file_callback = new_file_callback;
     }
     DropZone.prototype.show_drag_state = function(show) {
@@ -65,41 +61,43 @@
       return false;
     };
     DropZone.prototype.handle_drag_enter = function(event) {
-      console.log('DropZone::ondragenter');
       this.show_drag_state(true);
       event.preventDefault();
       return false;
     };
     DropZone.prototype.handle_drag_leave = function(event) {
-      console.log('DropZone::ondragleave');
       this.show_drag_state(false);
       event.preventDefault();
       return false;
     };
     DropZone.prototype.handle_drop = function(event) {
-      var file, files, _i, _len, _results;
+      var errors, file, files, _i, _len;
       event.stopPropagation();
       event.preventDefault();
       this.show_drag_state(false);
       files = event.dataTransfer.files;
       if (files.length === 0) {
-        this.alert('Can only drop files!');
+        this.alert('Sorry! You can only drop files!');
         return;
       }
-      _results = [];
+      errors = 0;
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
         if (file.size === 0) {
-          this.alert('That file was empty.');
+          this.alert('You dropped an empty file.');
+          errors = errors + 1;
           continue;
         }
         if (file.size > this.file_size_limit) {
-          this.alert_filesize(file.name);
+          this.alert('You can only drop files smaller than 10 MB.');
+          errors = errors + 1;
           continue;
         }
-        _results.push(this.new_file_callback(file));
+        this.new_file_callback(file);
       }
-      return _results;
+      if (errors === 0) {
+        return this.alert_clear();
+      }
     };
     return DropZone;
   })();
