@@ -1,6 +1,7 @@
 class window.AlertArea
     constructor: (element_id) ->
         @element = $( element_id )
+        @element.css( 'visibility', 'hidden' )
 
     show_message: (message) =>
         @element.html message
@@ -12,7 +13,8 @@ class window.AlertArea
             @element.html file
 
     clear: =>
-        @element.fadeTo( 0, 1 ).css( 'visibility', 'visible' ).fadeTo( 600, 0 )
+        if @element.css( 'visibility' ) is 'visible'
+            @element.fadeTo( 0, 1 ).css( 'visibility', 'visible' ).fadeTo( 600, 0 )
 
 class window.DropZone
     constructor: (element_id, new_file_callback, alert_callback, alert_clear_callback) ->
@@ -69,25 +71,23 @@ class window.DropZone
 
         if files.length is 0
             @alert 'Sorry! You can only drop files!'
-            # do something
             return
 
-        errors = 0
+        error = false
         for file in files
             if file.size is 0
-                # sorry, can only drop files
                 @alert 'You dropped an empty file.'
-                errors = errors + 1
+                error = true
                 continue
             if file.size > @file_size_limit
-                # file too large
                 #@alert_filesize file.name
                 @alert 'You can only drop files smaller than 10 MB.'
-                errors = errors + 1
+                error = true
                 continue
+
             @new_file_callback file
 
-        if errors is 0
+        if not error
             @alert_clear()
 
 
@@ -103,7 +103,6 @@ class window.Digester
 
             worker = new Worker 'javascripts/digester_worker.js'
             worker.onmessage = (event) =>
-                #console.log( 'returned from worker:', event )
                 @handle_digest_message( event.data )
 
             file_info =

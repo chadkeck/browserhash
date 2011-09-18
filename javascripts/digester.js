@@ -5,6 +5,7 @@
       this.clear = __bind(this.clear, this);
       this.show_filesize_message = __bind(this.show_filesize_message, this);
       this.show_message = __bind(this.show_message, this);      this.element = $(element_id);
+      this.element.css('visibility', 'hidden');
     }
     AlertArea.prototype.show_message = function(message) {
       this.element.html(message);
@@ -21,7 +22,9 @@
       return _results;
     };
     AlertArea.prototype.clear = function() {
-      return this.element.fadeTo(0, 1).css('visibility', 'visible').fadeTo(600, 0);
+      if (this.element.css('visibility') === 'visible') {
+        return this.element.fadeTo(0, 1).css('visibility', 'visible').fadeTo(600, 0);
+      }
     };
     return AlertArea;
   })();
@@ -71,7 +74,7 @@
       return false;
     };
     DropZone.prototype.handle_drop = function(event) {
-      var errors, file, files, _i, _len;
+      var error, file, files, _i, _len;
       event.stopPropagation();
       event.preventDefault();
       this.show_drag_state(false);
@@ -80,22 +83,22 @@
         this.alert('Sorry! You can only drop files!');
         return;
       }
-      errors = 0;
+      error = false;
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
         if (file.size === 0) {
           this.alert('You dropped an empty file.');
-          errors = errors + 1;
+          error = true;
           continue;
         }
         if (file.size > this.file_size_limit) {
           this.alert('You can only drop files smaller than 10 MB.');
-          errors = errors + 1;
+          error = true;
           continue;
         }
         this.new_file_callback(file);
       }
-      if (errors === 0) {
+      if (!error) {
         return this.alert_clear();
       }
     };
