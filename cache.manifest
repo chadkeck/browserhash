@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# rev 1
+# rev 2
 NETWORK:
 javascripts/ga.js
 CACHE:
@@ -11,6 +11,7 @@ javascripts/lib/md5.js
 javascripts/lib/sha1.js
 javascripts/lib/sha256.js
 javascripts/lib/sha512.js
+javascripts/lib/spin.js
 javascripts/digester.js
 javascripts/digester_worker.js
 javascripts/ingestion_engine.js
