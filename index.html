@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" manifest="cache.manifest">
 
 	<head>
 		<meta charset=utf-8 />
@@ -28,23 +28,10 @@
 		<script type="text/javascript" src="javascripts/digester.js"></script>
 		<script type="javascript/worker" src="javascripts/digester_worker.js"></script>
 		<script type="text/javascript" src="javascripts/ingestion_engine.js"></script>
+        <!-- Google Analytics -->
+        <script type="text/javascript" src="javascripts/ga.js"></script>
 
         <link rel="icon" type="image/png" href="favicon.png" />
-
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-11959882-3']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-             })();
-
-        </script>
 
 	</head>
 
