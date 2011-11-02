@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# rev 2
+# rev 3
 NETWORK:
 javascripts/ga.js
 CACHE:
@@ -19,3 +19,9 @@ stylesheets/960/reset.css
 stylesheets/960/text.css
 stylesheets/960/960.css
 stylesheets/ingestion_engine.css
+resources/shadow.png
+resources/spinner.gif
+resources/fonts/HVD_Comic_Serif_Pro-webfont.eot
+resources/fonts/HVD_Comic_Serif_Pro-webfont.svg
+resources/fonts/HVD_Comic_Serif_Pro-webfont.ttf
+resources/fonts/HVD_Comic_Serif_Pro-webfont.woff
