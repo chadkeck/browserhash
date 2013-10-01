@@ -17,34 +17,93 @@
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     </head>
-    <body>
-        <div class="container">
-            <form name="uploadForm">
-              <input multiple type="file" id="input" />
-            </form>
-            <progress id="progress" min="0" max="100" value="0"></progress>
+    <body id="page">
+      <script type="text/x-handlebars" id="result-template">
+        <div class="grid_12 entry">
+            <div class="filename">{{filename}}</div>
+            <table class="digests">
+              <tbody>
+                <tr>
+                  <td class="digest-type">MD5</td>
+                  <td class="digest-value"></td>
+                </tr>
+                <tr>
+                  <td class="digest-type">SHA-1</td>
+                  <td class="digest-value"></td>
+                </tr>
+                <tr>
+                  <td class="digest-type">SHA-256</td>
+                  <td class="digest-value"></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </script>
+
+      <div id="header" class="container_12">
+        <div class="grid_10">
+          <span id="title">
+            <a class="no-underline" href="//browserhash.com">Browser<span class="accent">H</span>ash<span class="less-contrast-text">.com</span></a>
+          </span>
+        </div>
+        <div class="grid_2 upload-button">
+          <input type="file" id="file-picker" name="files[]" multiple />
+        </div>
+      </div>
+
+      <div class="container_12">
+        <div class="grid_12">
+          <div id="alert-area"></div>
+        </div>
+      </div>
+
+      <div id="drop-area-container" class="container_12">
+        <div id="drop-zone" class="grid_12">
+          <div id="drop-zone-text">
+            Drop Files Here To Get Their Hashes
+          </div>
+          <div id="drop-zone-text-details">
+            MD5, SHA-1, and SHA-256 supported.
+          </div>
         </div>
 
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+        <div id="results-container" class="container_12">
+        </div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-11959882-3'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+      </div>
 
-        <!-- FIXME: get CryptoJS to use AMD -->
-        <script src="vendor/cryptojs/md5.js"></script>
-        <script src="vendor/cryptojs/sha1.js"></script>
-        <script src="vendor/cryptojs/sha3.js"></script>
-        <script src="vendor/cryptojs/sha256.js"></script>
+      <div id="footer">
+        <span class="copyright">
+          BrowserHash.com is written and maintained by <a href="mailto:chad@chadbibler.com">Chad Bibler</a>.
+          <a href="http://dregsoft.com/blog/?p=61">More info...</a>
+        </span>
+      </div>
 
-        <!-- build:js scripts/main.js -->
-        <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
-        <!-- endbuild -->
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <!-- Google Analytics -->
+      <script>
+        var _gaq=[['_setAccount','UA-11959882-3'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+      </script>
+      <!-- Google Analytics end -->
+
+      <!-- FIXME: get CryptoJS to use AMD -->
+      <script src="vendor/cryptojs/md5.js"></script>
+      <script src="vendor/cryptojs/sha1.js"></script>
+      <script src="vendor/cryptojs/sha3.js"></script>
+      <script src="vendor/cryptojs/sha256.js"></script>
+
+      <!-- build:js scripts/vendor/handlebars.js -->
+      <script src="bower_components/handlebars/handlebars.js"></script>
+      <!-- endbuild -->
+
+      <!-- build:js scripts/main.js -->
+      <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+      <!-- endbuild -->
 </body>
 </html>

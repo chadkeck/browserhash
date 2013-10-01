@@ -1,0 +1,55 @@
+@mixin border-radius( $radius ) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin vertical-glass-gradient( $color1, $color2, $color3, $color4 ) {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, $color1), color-stop(50%, $color2), color-stop(50.1%, $color3), color-stop(100%, $color4));
+    background-image: -moz-linear-gradient(top, $color1 0%, $color2 50%, $color3 50.1%, $color4 100%);
+    background-image: linear-gradient(top, $color1 0%, $color2 50%, $color3 50.1%, $color4 100%);
+}
+
+@mixin orange-gradient() {
+    background: #ffaf4b; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* W3C */
+}
+
+$box-shadow-x: 0;
+$box-shadow-y: 4px;
+$box-shadow-blur: 0.5em;
+@mixin box-shadow( $color ) {
+    -webkit-box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
+    -moz-box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
+    -o-box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
+    box-shadow: $box-shadow-x $box-shadow-y $box-shadow-blur $color;
+}
+
+@mixin all-transition( $time ) {
+    -webkit-transition: all #{ $time + 'ms' } linear;
+    -moz-transition: all #{ $time + 'ms' } linear;
+    -o-transition: all #{ $time + 'ms' } linear;
+    transition: all #{ $time + 'ms' } linear;
+}
+
+@mixin zoom( $factor ) {
+    -webkit-transform: scale( $factor );
+    -moz-transform: scale( $factor );
+    -o-transform: scale( $factor );
+    transform: scale( $factor );
+}
+
+@mixin not-selectable() {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

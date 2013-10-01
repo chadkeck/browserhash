@@ -168,9 +168,10 @@ module.exports = function (grunt) {
     },
     // not used since Uglify task does concat,
     // but still available if needed
-    /*concat: {
-            dist: {}
-        },*/
+    /* concat: {
+           dist: {}
+       },
+    */
     requirejs: {
       dist: {
         // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
